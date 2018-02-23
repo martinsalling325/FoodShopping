@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/tab2EditTextPlace"
+            android:layout_width="100pt"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:layout_marginLeft="10pt"
+            android:hint="Butiksnavn"
+            android:inputType="textCapWords"/>
+
+        <EditText
+            android:id="@+id/tab2EditTextAmount"
+            android:layout_width="100pt"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
+            android:layout_marginLeft="10pt"
+            android:hint="Kr."
+            android:inputType="numberDecimal"/>
+
+        <Button
+            android:id="@+id/tab2ButtonSave"
+            android:layout_marginTop="20pt"
+            android:layout_marginLeft="10pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gem Indkøb"
+            android:onClick="tab2ButtonSaveClicked"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
