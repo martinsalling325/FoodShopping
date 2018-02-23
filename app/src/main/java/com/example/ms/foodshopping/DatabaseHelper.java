@@ -70,10 +70,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, COL_1 + " = ?", new String[] {String.valueOf(Id)});
         db.close();
     }*/
-    public ArrayList<Shopping> getAllShopping()
+    public ArrayList<Shopping> getHistoryShopping()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT Year, ShopName, Amount, RegTime FROM " + TABLE_NAME;
         Cursor result = db.rawQuery(query, null);
 
         ArrayList<Shopping> shoppingList = new ArrayList<>();
@@ -84,13 +84,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (result.moveToNext())
             {
                 Shopping shopping = new Shopping();
-                shopping.setId(result.getInt(0));
+                shopping.setYear(result.getInt(0));
                 shopping.setShopName(result.getString(1));
                 shopping.setAmount(result.getDouble(2));
-                shopping.setYear(result.getInt(3));
-                shopping.setWeekNumber(result.getInt(4));
-                shopping.setRegTime(result.getString(5));
-
+                shopping.setRegTime(result.getString(3));
                 shoppingList.add(shopping);
             }
         }
