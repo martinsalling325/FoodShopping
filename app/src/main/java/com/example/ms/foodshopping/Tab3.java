@@ -59,7 +59,6 @@ public class Tab3 extends Fragment {
                 }
             });
         }
-
         else
         {
             listViewTab3.setAdapter(null);
