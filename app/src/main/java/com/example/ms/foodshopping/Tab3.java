@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -43,18 +44,20 @@ public class Tab3 extends Fragment {
                 listViewTab3.setAdapter(adapter);
             }
 
-            /*listViewTab1.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            listViewTab3.setOnItemClickListener(new AdapterView.OnItemClickListener()
             {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                 {
-                    Movie selectedMovie = (Movie) parent.getItemAtPosition(position);
+                    Shopping selectedObj = (Shopping) parent.getItemAtPosition(position);
+                    MainActivity.dbHelper.DeleteShopping(selectedObj.getYear(), selectedObj.getShopName(), selectedObj.getAmount());
+                    ShowHistoryShopping();
 
-                    Intent intent = new Intent(FavoritesActivity.this, DetailActivity.class);
+                    /*Intent intent = new Intent(FavoritesActivity.this, DetailActivity.class);
                     intent.putExtra("movieId", selectedMovie.Id);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
-            });*/
+            });
         }
 
         else

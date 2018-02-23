@@ -64,12 +64,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    /*public void DeleteShopping(int Id)
+    public void DeleteShopping(int year, String shopName, double amount)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, COL_1 + " = ?", new String[] {String.valueOf(Id)});
+        db.delete(TABLE_NAME, COL_4 + " = ? AND " + COL_2 + " = ? AND " + COL_3 + " = ?", new String[] {String.valueOf(year), shopName, String.valueOf(amount)});
         db.close();
-    }*/
+    }
+
     public ArrayList<Shopping> getHistoryShopping()
     {
         SQLiteDatabase db = this.getWritableDatabase();
