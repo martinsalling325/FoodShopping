@@ -62,13 +62,13 @@ public class Tab3 extends Fragment {
                     dialog.setContentView(R.layout.fragment_delete);
 
                     // Performs the delete
-                    Button dialogBtnDelete = (Button) dialog.findViewById(R.id.btn_deleteConfirm);
+                    Button dialogBtnDelete = dialog.findViewById(R.id.btn_deleteConfirm);
                     dialogBtnDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
                             Shopping selectedObj = (Shopping) parent.getItemAtPosition(position);
-                            MainActivity.dbHelper.DeleteShopping(selectedObj.getYear(), selectedObj.getShopName(), selectedObj.getAmount());
+                            MainActivity.dbHelper.DeleteShopping(selectedObj.getRegTime(), selectedObj.getShopName(), selectedObj.getAmount());
                             ShowHistoryShopping();
 
                             Snackbar snackbar = Snackbar
