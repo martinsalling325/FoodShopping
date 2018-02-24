@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorPrimaryDark">
+
+
+    <ImageView
+        android:id="@+id/searchTitleProfile"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:src="@android:drawable/ic_menu_delete"
+        />
+
+    <TextView
+        android:id="@+id/searchTitleName"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="@string/title_dialog_deleteConfirm"
+        />
+
+</LinearLayout>

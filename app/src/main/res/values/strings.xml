@@ -1,8 +1,21 @@
 <resources>
+
+    <!--
+        app
+    -->
     <string name="app_name">Food Shopping</string>
     <string name="tab_text_1">Overblik</string>
     <string name="tab_text_2">Nyt Indkøb</string>
     <string name="tab_text_3">Historik</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <!--
+        fragment : DELETE
+    -->
+    <string name="title_dialog_deleteConfirm">Bekræft sletning!</string>
+    <string name="dialog_button_go">Næste…</string>
+    <string name="dialog_button_cancel">Afbryd</string>
+    <string name="dialog_button_delete">Slet</string>
+
 </resources>
