@@ -50,7 +50,7 @@ public class Tab3 extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                 {
                     Shopping selectedObj = (Shopping) parent.getItemAtPosition(position);
-                    MainActivity.dbHelper.DeleteShopping(selectedObj.getYear(), selectedObj.getShopName(), selectedObj.getAmount());
+                    MainActivity.dbHelper.DeleteShopping(selectedObj.getRegTime(), selectedObj.getShopName(), selectedObj.getAmount());
                     ShowHistoryShopping();
 
                     /*Intent intent = new Intent(FavoritesActivity.this, DetailActivity.class);

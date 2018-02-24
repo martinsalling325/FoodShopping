@@ -54,7 +54,7 @@ public class WeekTotalAdapter extends ArrayAdapter<Shopping> {
             holder.textViewWeekNumber.setText("Uge: " + shopping.getWeekNumber());
             Double weekTotal = shopping.getTotalWeek();
             weekTotal = Math.round(weekTotal * 100d) / 100d;
-            holder.textViewSum.setText("Beløb: " + weekTotal + ",-");
+            holder.textViewSum.setText("Kr. " + weekTotal + ",-");
         }
 
         return convertView;

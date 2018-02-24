@@ -6,9 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by MS on 18-02-2018.
@@ -36,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db)
     {
         String SQL_String = "CREATE TABLE " + TABLE_NAME + "(" + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_2 + " TEXT,"
-                + COL_3 + " Integer," + COL_4 + " Integer," + COL_5 + " Integer," + COL_6 + " Integer);";
+                + COL_3 + " Integer," + COL_4 + " Integer," + COL_5 + " Integer," + COL_6 + " TEXT);";
         db.execSQL(SQL_String);
     }
 
@@ -50,6 +54,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void InsertNewShopping(String shopName, Double amount)
     {
         Integer year = Calendar.getInstance().get(Calendar.YEAR);
+        Integer month = Calendar.MONTH;
+        Integer date = Calendar.getInstance().get(Calendar.DATE);
         Integer weekNumber = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -58,23 +64,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_3, amount);
         contentValues.put(COL_4, year);
         contentValues.put(COL_5, weekNumber);
-        contentValues.put(COL_6, Calendar.getInstance().get(Calendar.DATE));
+        String dateString = date + "-" + month + "-" + year;
+        contentValues.put(COL_6, dateString);
 
         db.insert(TABLE_NAME, null, contentValues);
         db.close();
     }
 
-    public void DeleteShopping(int year, String shopName, double amount)
+    public void DeleteShopping(String date, String shopName, double amount)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, COL_4 + " = ? AND " + COL_2 + " = ? AND " + COL_3 + " = ?", new String[] {String.valueOf(year), shopName, String.valueOf(amount)});
+        db.delete(TABLE_NAME,COL_2 + " = ? AND " + COL_3 + " = ?", new String[] {shopName, String.valueOf(amount)});
         db.close();
     }
 
     public ArrayList<Shopping> getHistoryShopping()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT Year, ShopName, Amount, RegTime FROM " + TABLE_NAME;
+        String query = "SELECT ShopName, Amount, RegTime FROM " + TABLE_NAME;
         Cursor result = db.rawQuery(query, null);
 
         ArrayList<Shopping> shoppingList = new ArrayList<>();
@@ -85,10 +92,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (result.moveToNext())
             {
                 Shopping shopping = new Shopping();
-                shopping.setYear(result.getInt(0));
-                shopping.setShopName(result.getString(1));
-                shopping.setAmount(result.getDouble(2));
-                shopping.setRegTime(result.getString(3));
+                shopping.setShopName(result.getString(0));
+                shopping.setAmount(result.getDouble(1));
+                shopping.setRegTime(result.getString(2));
                 shoppingList.add(shopping);
             }
         }

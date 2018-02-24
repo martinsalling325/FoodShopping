@@ -22,7 +22,7 @@ public class HistoryShoppingAdapter extends ArrayAdapter<Shopping> {
 
     private static class ViewHolder
     {
-        TextView textViewYear;
+        TextView textViewDate;
         TextView textViewShopName;
         TextView textViewAmount;
     }
@@ -39,7 +39,7 @@ public class HistoryShoppingAdapter extends ArrayAdapter<Shopping> {
 
             holder = new HistoryShoppingAdapter.ViewHolder();
 
-            holder.textViewYear = convertView.findViewById(R.id.textViewHistoryShoppingCustomRowYear);
+            holder.textViewDate = convertView.findViewById(R.id.textViewHistoryShoppingCustomRowDate);
             holder.textViewShopName = convertView.findViewById(R.id.textViewHistoryShoppingCustomRowShopName);
             holder.textViewAmount = convertView.findViewById(R.id.textViewHistoryShoppingCustomRowAmount);
 
@@ -54,9 +54,9 @@ public class HistoryShoppingAdapter extends ArrayAdapter<Shopping> {
 
         if (shopping != null)
         {
-            holder.textViewYear.setText("År: " + shopping.getYear());
+            holder.textViewDate.setText(shopping.getRegTime());
             holder.textViewShopName.setText(shopping.getShopName());
-            holder.textViewAmount.setText("Beløb: " + shopping.getAmount() + ",-");
+            holder.textViewAmount.setText("Kr. " + shopping.getAmount() + ",-");
         }
 
         return convertView;
