@@ -20,6 +20,6 @@ public class Tab2 extends Fragment {
     }
 
     public void SaveShopping(String shopName, Double amount) {
-        MainActivity.dbHelper.InsertNewShopping(shopName, amount);
+        MainActivity.dbHelper.InsertNewShopping(shopName, amount, null);
     }
 }

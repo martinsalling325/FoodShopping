@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void InsertNewShopping(String shopName, Double amount)
+    public void InsertNewShopping(String shopName, Double amount, String dateString)
     {
         Integer year = Calendar.getInstance().get(Calendar.YEAR);
         Integer month = Calendar.MONTH;
@@ -64,7 +64,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_3, amount);
         contentValues.put(COL_4, year);
         contentValues.put(COL_5, weekNumber);
-        String dateString = date + "-" + month + "-" + year;
+        if (dateString == null){
+            dateString = date + "-" + month + "-" + year;
+        }
         contentValues.put(COL_6, dateString);
 
         db.insert(TABLE_NAME, null, contentValues);

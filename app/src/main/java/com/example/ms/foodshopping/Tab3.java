@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class Tab3 extends Fragment {
 
+    Shopping selectedObj;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -67,7 +69,7 @@ public class Tab3 extends Fragment {
                         @Override
                         public void onClick(View v) {
 
-                            Shopping selectedObj = (Shopping) parent.getItemAtPosition(position);
+                            selectedObj = (Shopping) parent.getItemAtPosition(position);
                             MainActivity.dbHelper.DeleteShopping(selectedObj.getRegTime(), selectedObj.getShopName(), selectedObj.getAmount());
                             ShowHistoryShopping();
 
@@ -76,8 +78,10 @@ public class Tab3 extends Fragment {
                                     .setAction("UNDO", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
+                                            MainActivity.dbHelper.InsertNewShopping(selectedObj.getShopName(), selectedObj.getAmount(), selectedObj.getRegTime());
                                             Snackbar snackbar1 = Snackbar.make(getView(), "Message is restored!", Snackbar.LENGTH_SHORT);
                                             snackbar1.show();
+                                            ShowHistoryShopping();
                                         }
                                     });
 
@@ -88,13 +92,21 @@ public class Tab3 extends Fragment {
                     });
 
                     // Closes the Dialog
-                    Button dialogBtnCancel = (Button) dialog.findViewById(R.id.btn_deleteCancel);
+                    Button dialogBtnCancel = dialog.findViewById(R.id.btn_deleteCancel);
                     dialogBtnCancel.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
                         }
                     });
+
+                    /*Button dialogBtnConfirm = dialog.findViewById(R.id.btn_deleteConfirm);
+                    dialogBtnConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MainActivity.dbHelper.InsertNewShopping(selectedObj.getShopName(), selectedObj.getAmount(), selectedObj.getRegTime());
+                        }
+                    });*/
 
                     dialog.show();
 /*
